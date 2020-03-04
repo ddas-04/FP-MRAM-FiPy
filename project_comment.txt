@@ -1,0 +1,2 @@
+# Comments:
+1) Gmsh is machine dependent, so either run your all code in a single machine or use pickle
