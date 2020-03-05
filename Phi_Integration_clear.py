@@ -13,7 +13,7 @@
 
 
 def get_phi_tuple(number_of_cells):
-    Filename = './with_axis_0_VTK_files/with_axis_0_img_00000.vtk' #This file contains the phi value
+    Filename = './with_axis_0_VTK_files/with_axis_0_img_00800.vtk' #This file contains the phi value
     reader = vtk.vtkUnstructuredGridReader()
     reader.SetFileName(Filename)
     reader.ReadAllScalarsOn()
@@ -187,7 +187,7 @@ type(mvalue_sph_pol)
 phi_angle_all=mvalue_sph_pol[2,:]
 
 phi_value=0
-delta=0.02001
+delta=0.025001
 phi_save=[]
 theta_max=[]
 integ_rho_sin_theta=[]
