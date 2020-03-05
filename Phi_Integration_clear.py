@@ -41,42 +41,6 @@ def cart2pol(mValue):
     return r,theta,phi
 
 
-# ### Uniaxial Anisotropy field value function
-
-# In[405]:
-
-
-def H_UniaxialAnisotropy(mUnit, uAxis, Ku2, Msat):
-    ############ calculate normalized direction #####
-    uAxisNorm = numerix.linalg.norm(uAxis)
-    #print(uAxisNorm)          
-    uAxisUnit = uAxis / uAxisNorm
-    #print(uAxisUnit)
-    #################################################
-    ############ normalizes the grid coordinate #####
-    mNorm = numerix.linalg.norm(mUnit,axis=0)     
-    #print(mNorm)
-    mArray = mUnit / mNorm
-    #mArray = mUnit
-    #print(mArray)
-    #################################################
-    #################################################
-    # repeat uniaxial direction vector for n times 
-    # where n= number of cells. uAxisUnit=3X1
-    # uAxisArr=nX3, represents uniaxial direction for
-    # each cells in the unit sphere
-    #################################################
-    uAxisArr = numerix.tile(uAxisUnit, (len(mUnit[0]), 1)) 
-    uAxisArr = numerix.transpose(uAxisArr) # converted to 3Xn 
-    mdotu = numerix.dot(mArray, uAxisArr)  # projection of m along uniaxial direction
-    scaleFac = numerix.multiply(mdotu, (-2.0 * Ku2 / Msat)) # calculate the magnitude in Tesla
-    Heff = numerix.zeros((3, len(scaleFac)), 'd') # Uniaxial vector for each cell
-    Heff[0] = numerix.multiply(scaleFac, uAxisArr[0])
-    Heff[1] = numerix.multiply(scaleFac, uAxisArr[1])
-    Heff[2] = numerix.multiply(scaleFac, uAxisArr[2])
-    return Heff
-
-
 # ### Index sorting function
 
 # In[406]:
